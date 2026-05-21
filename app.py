@@ -3,10 +3,10 @@ import pandas as pd
 import numpy as np
 import pickle
 
-# Set page title
-st.set_page_title("Prediksi Gaji Pertama Peserta Vokasi")
+# 1. Konfigurasi halaman (Harus menjadi perintah Streamlit pertama)
+st.set_page_config(page_title="Prediksi Gaji Pertama Peserta Vokasi", layout="centered")
 
-# 1. Load the exported assets
+# 2. Load the exported assets
 @st.cache_resource
 def load_assets():
     with open('label_encoders.pkl', 'rb') as f:
@@ -23,7 +23,7 @@ try:
     st.title("🚀 Aplikasi Prediksi Gaji Pertama")
     st.markdown("Masukkan data peserta di bawah ini untuk melihat estimasi gaji pertama (dalam Juta).")
 
-    # 2. UI for User Input
+    # 3. UI for User Input
     col1, col2 = st.columns(2)
 
     with col1:
@@ -37,7 +37,7 @@ try:
         nilai_ujian = st.number_input("Nilai Ujian", min_value=0.0, max_value=100.0, value=85.0)
         status_bekerja = st.selectbox("Status Bekerja", ['Belum Bekerja', 'Sudah Bekerja'])
 
-    # 3. Prediction Logic
+    # 4. Prediction Logic
     if st.button("Prediksi Gaji"):
         # Prepare raw data
         input_df = pd.DataFrame({
